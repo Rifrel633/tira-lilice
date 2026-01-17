@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tira Lilice | Salon de Thé à Brazzaville</title>
+
+    <!-- SEO LOCAL -->
+    <meta name="description" content="Salon de Thé Tira Lilice à Brazzaville. Tiramisu, fast-food et boissons. Commande rapide via WhatsApp.">
+    <meta name="keywords" content="salon de Thé Brazzaville, fast food Congo, Tiramisu, boissons, Tira Lilice">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ICONES OFFICIELLES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- STYLE PREMIUM -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #FF6AA5;
+            color: #eee;
+        }
+
+        header {
+            background: #000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgb(20, 20, 18);
+        }
+
+        header h1 {
+            color: white;
+            margin: 0;
+        }
+
+        nav a {
+            color: #eee;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #hero {
+            background: linear-gradient(#FF6AA5, #FF6AA5),
+                        url("Lilice.png") center/cover;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        #hero h2 {
+            color: white;
+            font-size: 45px;
+        }
+
+        .btn {
+            background: white;
+            color: black;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .menu-buttons {
+            margin-bottom: 30px;
+        }
+
+        .plats {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .plat {
+            background: #1c1c1c;
+            width: 240px;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255,215,0,0.2);
+        }
+
+        .plat img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        footer {
+            background: #000;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* WHATSAPP FIXE */
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* RESEAUX SOCIAUX */
+        #reseaux {
+            background: #000;
+            padding: 40px 20px;
+        }
+
+        #reseaux h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        @media(max-width:768px){
+            #hero h2 { font-size: 30px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Tira Lilice </h1>
+    <nav>
+        <a href="#hero">Accueil</a>
+        <a href="#menu">Menu</a>
+        <a href="#commande">Commander</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+    <h2>La Tiramiserie au coeur de Brazzaville</h2>
+    <p>Saveurs • Qualité • Rapidité</p>
+    <button class="btn" onclick="commander('menu complet')">
+        <i class="fa-solid fa-bag-shopping"></i> Commander maintenant
+    </button>
+</section>
+
+<!-- RESEAUX SOCIAUX -->
+<section id="reseaux">
+    <h3>Suivez-nous sur nos réseaux</h3>
+    <div class="social-buttons">
+        </a>
+        <a class="btn" href="https://www.instagram.com/tiralilice?igsh=cGwyOWZlaWpxb2Vs" target="_blank">
+            <i class="fa-brands fa-instagram"></i> Instagram
+        </a>
+        <a class="btn" href="https://www.tiktok.com/@tiralilice?_r=1&_t=ZS-938Hl7HOwIW" target="_blank">
+            <i class="fa-brands fa-tiktok"></i> TikTok
+        </a>
+    </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+    <h2> Notre Menu</h2>
+
+    <div class="menu-buttons">
+        <button class="btn" onclick="showMenu('Tiramisu')">Tiramisu</button>
+        <button class="btn" onclick="showMenu('fastfood')">Fast-Food</button>
+        <button class="btn" onclick="showMenu('boissons')">Boissons</button>
+    </div>
+
+    <div class="plats" id="menuContainer"></div>
+</section>
+
+<!-- COMMANDE -->
+<section id="commande">
+    <h2>💳 Paiement</h2>
+    <p>MTN Mobile Money • Airtel Money • Cash</p>
+    <button class="btn" onclick="payer()">
+        <i class="fa-solid fa-credit-card"></i> Procéder au paiement
+    </button>
+</section>
+
+<footer>
+    © 2026 Tira Lilice – Salon de Thé à Brazzaville                          © Product by RMP RECORD<br>
+   
+    <small>
+        📍 Adresse : Brazzaville – Allée Piétonne Hôtel Saphir, République du Congo  📞 Contact : +242 06 786 1388 ⏰ Ouvert : Lundi – Dimanche | 10h30 – 00h <br>
+        
+    </small>
+</footer>
+
+<!-- WHATSAPP -->
+<a class="whatsapp"
+   href="https://wa.me/242064456713?text=Bonjour%20je%20souhaite%20commander%20chez%20Tira%20Lilice"
+   target="_blank">
+   <i class="fa-brands fa-whatsapp"></i> WhatsApp
+</a>
+
+<!-- JAVASCRIPT -->
+<script>
+const menus = {
+    Tiramisu: [
+        { nom: "Oréo", prix: "3500 FCFA", image: "Tiramisu Oreo.jpg" },
+        { nom: "Nutella", prix: "3500 FCFA", image: "Tiramisu nutella.jpg" },
+        { nom: "Matcha", prix: "3000 FCFA", image: "téléchargement.jpeg" },
+        { nom: "Spéculos", prix: "3500 FCFA", image: "images.jpeg" },
+        { nom: "Kinder", prix: "3500 FCFA", image: "bueno.jpeg" },
+        { nom: "Fraise", prix: "4000 FCFA", image: "fraise.jpeg" },
+        { nom: "Raisin", prix: "4000 FCFA", image: "images3.jpeg" },
+        { nom: "Classique", prix: "3000 FCFA", image: "Classique.png" }
+    ],
+    fastfood: [
+        { nom: "Panini", prix: "2000 FCFA", image: "panini.jpeg" },
+        { nom: "Shawarma", prix: "2000 FCFA", image: "shawarma.jpeg" },
+        { nom: "Kebab", prix: "3000 FCFA", image: "kebab.jpeg" },
+        { nom: "Tacos", prix: "3500 FCFA", image: "tacos.jpeg" },
+        { nom: "Crêpe salée", prix: "3500 FCFA", image: "crepesale.jpeg" },
+        { nom: "Gauffre salée", prix: "4000 FCFA", image: "gauffresale.jpeg" }
+    ],
+    boissons: [
+        { nom: "Coca-Cola / Fanta / Sprite / Orangina", prix: "1000 FCFA", image: "fanta.jpeg" },
+        { nom: "Redbull", prix: "2000 FCFA", image: "red.jpeg" },
+        { nom: "Eau minérale", prix: "500 FCFA", image: "eau.jpeg" },
+        { nom: "Café", prix: "2000 FCFA", image: "café.jpeg" },
+        { nom: "Thé", prix: "1500 FCFA", image: "the.jpeg" },
+        { nom: "Virgin", prix : "4000 FCFA", image: "virgin.jpeg" },
+        { nom: "Mojito", prix : "4000 FCFA", image: "mojito.jpeg" },
+        { nom: "Milk shake ", prix : "3000 FCFA", image: "milshake.jpeg" },
+        { nom: "Bora bora ", prix : "4000 FCFA", image: "bora.jpeg" },
+        { nom: "Cocktail aux fruits ", prix : "4000 FCFA", image: "fruit.jpeg" }
+    ]
+};
+
+const container = document.getElementById("menuContainer");
+
+function showMenu(type) {
+    container.innerHTML = "";
+    menus[type].forEach(item => {
+        container.innerHTML += `
+            <div class="plat">
+                <img src="${item.image}">
+                <h3>${item.nom}</h3>
+                <p>${item.prix}</p>
+                <button class="btn" onclick="commander('${item.nom}')">
+                    <i class="fa-solid fa-cart-plus"></i> Commander
+                </button>
+            </div>
+        `;
+    });
+}
+
+function commander(nom) {
+    window.open(
+        "https://wa.me/242064456713?text=Bonjour,%20je%20souhaite%20commander%20: "+nom,
+        "_blank"
+    );
+}
+
+function payer() {
+    alert("🔒 Paiement Mobile Money en cours d’intégration");
+}
+
+showMenu("Tiramisu");
+</script>
+
+</body>
+</html>
