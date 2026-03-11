@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tira Lilice</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* ================= VARIABLES ================= */
+
+:root{
+--rose:#FF6AA5;
+--noir:#111;
+--blanc:#fff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#FF6AA5,#000);
+color:white;
+overflow-x:hidden;
+}
+
+/* ================= HEADER PREMIUM ================= */
+
+header{
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(12px);
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+box-shadow:0 4px 20px rgba(0,0,0,0.4);
+}
+
+header h3{
+color:white;
+letter-spacing:2px;
+font-weight:600;
+}
+
+.menu-toggle{
+font-size:26px;
+color:var(--rose);
+cursor:pointer;
+transition:0.3s;
+}
+
+.menu-toggle:hover{
+transform:scale(1.15);
+color:white;
+}
+
+/* ================= NAV PREMIUM NETFLIX ================= */
+
+/* MOBILE */
+nav{
+position:fixed;
+top:0;
+right:-100%;
+height:100%;
+width:280px;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(15px);
+display:flex;
+flex-direction:column;
+padding-top:100px;
+transition:0.4s ease;
+z-index:1500;
+box-shadow:-10px 0 40px rgba(0,0,0,0.6);
+}
+
+nav.active{
+right:0;
+}
+
+nav a{
+padding:18px 30px;
+color:white;
+text-decoration:none;
+font-size:16px;
+letter-spacing:1px;
+transition:0.3s;
+position:relative;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+left:30px;
+bottom:12px;
+width:0%;
+height:2px;
+background:var(--rose);
+transition:0.3s;
+}
+
+nav a:hover{
+color:var(--rose);
+transform:translateX(6px);
+}
+
+nav a:hover::after{
+width:40%;
+}
+
+/* DESKTOP */
+@media(min-width:992px){
+
+.menu-toggle{
+display:none;
+}
+
+nav{
+position:static;
+height:auto;
+width:auto;
+flex-direction:row;
+background:transparent;
+padding:0;
+box-shadow:none;
+right:0;
+}
+
+nav a{
+padding:10px 20px;
+font-size:14px;
+}
+
+nav a::after{
+left:20px;
+bottom: -4px;
+}
+
+}
+
+/* ================= PAGES ================= */
+
+.page{
+display:none;
+padding:110px 15px 70px;
+min-height:100vh;
+}
+
+.page.active{
+display:block;
+animation:fade 0.5s ease;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* ================= HERO ================= */
+
+.hero{
+height:85vh;
+background:
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url("Photos/hero.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{font-size:26px;}
+.hero p{margin:12px 0;font-size:15px;}
+
+.hero-btn{
+background:white;
+color:black;
+padding:12px 25px;
+border-radius:30px;
+border:none;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.hero-btn:hover{
+background:var(--rose);
+color:white;
+}
+
+/* ================= CARDS ================= */
+
+.cards{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.card{
+position:relative;
+background:rgba(0,0,0,0.85);
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.4s;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-content{
+padding:18px;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+.btn{
+margin-top:10px;
+background:white;
+color:black;
+border:none;
+padding:10px 20px;
+border-radius:25px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn:hover{
+background:var(--rose);
+color:white;
+}
+
+/* ================= BADGE PRODUIT ================= */
+
+.badge{
+position:absolute;
+top:12px;
+left:12px;
+background:linear-gradient(45deg,#FFD700,#FFA500);
+color:#000;
+font-size:12px;
+padding:6px 12px;
+border-radius:20px;
+font-weight:bold;
+box-shadow:0 0 15px rgba(255,215,0,0.7);
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{box-shadow:0 0 10px rgba(255,215,0,0.6);}
+to{box-shadow:0 0 25px rgba(255,215,0,1);}
+}
+
+/* ================= OPTIONS TACOS / PANINI ================= */
+
+.tacos-options,
+.Panini-options{
+display:flex;
+gap:10px;
+margin:10px 0;
+}
+
+.taco-btn{
+flex:1;
+padding:10px;
+border-radius:25px;
+border:2px solid var(--rose);
+background:transparent;
+color:white;
+cursor:pointer;
+transition:0.3s;
+font-weight:bold;
+}
+
+.taco-btn.active{
+background:var(--rose);
+box-shadow:0 0 15px rgba(255,106,165,0.6);
+}
+
+.taco-btn:hover{
+background:var(--rose);
+}
+
+/* ================= PANIER ================= */
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(8px);
+display:none;
+z-index:1800;
+}
+
+.overlay.active{display:block;}
+
+.cart{
+position:fixed;
+right:-100%;
+top:0;
+width:85%;
+height:100%;
+background:#111;
+padding:20px;
+transition:0.4s;
+z-index:2000;
+overflow-y:auto;
+border-top-left-radius:20px;
+border-bottom-left-radius:20px;
+}
+
+.cart.active{right:0;}
+
+.cart-item{
+border-bottom:1px solid #333;
+padding:10px 0;
+}
+
+.qty-btn{
+background:#444;
+color:white;
+border:none;
+padding:4px 8px;
+margin:0 4px;
+cursor:pointer;
+}
+
+.remove-btn{
+background:red;
+color:white;
+border:none;
+padding:4px 6px;
+cursor:pointer;
+}
+
+.total{
+margin-top:15px;
+font-weight:bold;
+}
+
+/* ================= BADGE PANIER ================= */
+
+.cart-icon{
+position:fixed;
+bottom:20px;
+left:20px;
+background:black;
+padding:15px;
+border-radius:50%;
+z-index:1000;
+cursor:pointer;
+}
+
+.cart-badge{
+position:absolute;
+top:-5px;
+right:-5px;
+background:var(--rose);
+color:white;
+font-size:12px;
+width:20px;
+height:20px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+box-shadow:0 0 10px rgba(255,106,165,0.7);
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+position:fixed;
+bottom:100px;
+left:50%;
+transform:translateX(-50%);
+background:var(--rose);
+padding:12px 25px;
+border-radius:30px;
+opacity:0;
+transition:0.4s;
+z-index:3000;
+box-shadow:0 0 20px rgba(255,106,165,0.5);
+}
+
+.toast.show{
+opacity:1;
+bottom:120px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+background:linear-gradient(180deg,#000 0%,#111 100%);
+padding:60px 20px 30px;
+margin-top:60px;
+border-top-left-radius:30px;
+border-top-right-radius:30px;
+}
+
+.footer-container{
+display:flex;
+flex-direction:column;
+gap:30px;
+text-align:center;
+}
+
+.footer-section h4{
+color:var(--rose);
+margin-bottom:12px;
+text-transform:uppercase;
+}
+
+.footer-divider{
+margin:25px 0;
+height:1px;
+background:rgba(255,255,255,0.1);
+}
+
+.footer-logo{
+font-size:22px;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+.footer-tagline{
+font-size:14px;
+opacity:0.8;
+margin-top:8px;
+}
+
+/* ================= SOCIAL PREMIUM ================= */
+
+.social-premium{
+background:linear-gradient(180deg,var(--rose),#000);
+padding:60px 20px;
+text-align:center;
+border-top-left-radius:40px;
+border-top-right-radius:40px;
+margin-top:40px;
+}
+
+.social-icons{
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+.social-btn{
+width:55px;
+height:55px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+font-size:22px;
+color:white;
+transition:0.3s;
+}
+
+.social-btn:hover{
+transform:scale(1.15);
+box-shadow:0 0 25px var(--rose);
+}
+
+.whatsapp-float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:55px;
+height:55px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+font-size:24px;
+z-index:3000;
+box-shadow:0 5px 20px rgba(0,0,0,0.4);
+transition:0.3s;
+}
+
+.whatsapp-float:hover{
+transform:scale(1.1);
+}
+
+/* ================= TABLETTE ================= */
+
+@media(min-width:768px){
+
+.cards{
+flex-direction:row;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.card{
+width:45%;
+}
+
+.hero h1{
+font-size:32px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.footer-container{
+flex-direction:row;
+justify-content:space-between;
+text-align:left;
+}
+
+html, body{
+overflow-x:hidden;
+}
+
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+}
+
+/* ================= DESKTOP ================= */
+@media(min-width:992px){
+header{
+  justify-content:space-between;
+}
+nav{
+  margin-left:auto;
+}
+} 
+
+@media(min-width:1200px){
+.ccards{
+justify-content:center;
+}
+}
+
+/* ================= ORDINATEUR ================= */
+
+@media(min-width:1200px){
+
+
+.page{
+max-width:1200px;
+margin:auto;
+}
+
+.card{
+width:30%;
+}
+
+.hero{
+height:95vh;
+}
+
+.hero h1{
+font-size:40px;
+}
+
+.hero p{
+font-size:20px;
+}
+
+}
+
+.page h3{
+margin-bottom:15px;
+font-size:20px;
+border-left:4px solid var(--rose);
+padding-left:12px;
+letter-spacing:1px;
+}
+
+.brand-title{
+font-size:30px;
+font-weight:900;
+letter-spacing:4px;
+text-transform:uppercase;
+color:white;
+text-shadow:
+0 0 10px #FF6AA5,
+0 0 20px #FF6AA5,
+0 0 40px rgba(255,106,165,0.6);
+transition:0.4s;
+}
+
+.brand-title:hover{
+text-shadow:
+0 0 15px #FFD700,
+0 0 30px #FFD700,
+0 0 60px rgba(255,215,0,0.8);
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h3 class="brand-title">Tira Lilice</h3>
+
+<nav>
+<a href="javascript:void(0)" onclick="showPage('home')">Accueil</a>
+<a href="javascript:void(0)" onclick="showPage('tiramisu')">Tiramisu</a>
+<a href="javascript:void(0)" onclick="showPage('fastfood')">Fast Food</a>
+<a href="javascript:void(0)" onclick="showPage('boissons')">Boissons</a>
+</nav>
+<i class="fa-solid fa-bars menu-toggle"></i>
+
+</header>
+<!-- ACCUEIL -->
+
+<div id="home" class="page active">
+<div class="hero">
+<h1>La Tiramiserie au cœur de Brazzaville</h1>
+<p>Saveurs - Qualité - Rapidité</p>
+<button class="hero-btn" onclick="showPage('tiramisu')">Commander maintenant</button>
+</div>
+</div>
+
+<!-- TIRAMISU -->
+<div id="tiramisu" class="page">
+<h2>Tiramisu</h2>
+
+<div class="cards">
+
+<!-- Nutella -->
+<div class="card">
+<div class="badge">Best Selling 🛍️</div>
+<img src="Photos/tiramisu-nutella.jpg">
+<div class="card-content">
+<h3>Nutella</h3>
+<p>3500 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Nutella',3500)">Ajouter</button>
+</div>
+</div>
+
+<!-- Oreo -->
+<div class="card">
+<div class="badge">Populaire ⭐</div>
+<img src="Photos/tiramisu-oreo.jpg">
+<div class="card-content">
+<h3>Oreo</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Oreo',4000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Spéculos -->
+<div class="card">
+<div class="badge">Populaire ⭐</div>
+<img src="Photos/tiramisu-speculos.jpg">
+<div class="card-content">
+<h3>Spéculos</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Spéculos',4000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Kinder -->
+<div class="card">
+<div class="badge">Populaire ⭐</div>
+<img src="Photos/tiramisu-kinder.jpg">
+<div class="card-content">
+<h3>Kinder</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Kinder',4000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Granola -->
+<div class="card">
+<div class="badge">New flavor ⭐</div>
+<img src="Photos/tiramisu-granola.jpg">
+<div class="card-content">
+<h3>Granola</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Granola',4000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Matcha -->
+<div class="card">
+<img src="Photos/tiramisu-matcha.jpg">
+<div class="card-content">
+<h3>Matcha</h3>
+<p>3000 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Matcha',3000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Classique -->
+<div class="card">
+<img src="Photos/tiramisu-classique.jpg">
+<div class="card-content">
+<h3>Classique</h3>
+<p>3000 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Classique',3000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Fraise -->
+<div class="card">
+<img src="Photos/tiramisu-fraise.jpg">
+<div class="card-content">
+<h3>Fraise</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Fraise',4000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Raisin -->
+<div class="card">
+<img src="Photos/tiramisu-raisin.jpg">
+<div class="card-content">
+<h3>Raisin</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Tiramisu Raisin',4000)">Ajouter</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- FAST FOOD -->
+<div id="fastfood" class="page">
+<h2>Fast Food</h2>
+
+<div class="cards">
+
+<!-- Crêpes salées -->
+<div class="card">
+<img src="Photos/crepeee.jpg">
+<div class="card-content">
+<h3>Crêpes salées</h3>
+<p>2500 FCFA</p>
+<button class="btn" onclick="addToCart('Crêpes salées',2500)">Ajouter</button>
+</div>
+</div>
+
+<!-- Panini -->
+<div class="card">
+<img src="Photos/paniii.jpg">
+<div class="card-content">
+<h3>Panini</h3>
+
+<div class="Panini-options">
+<button class="taco-btn active" onclick="selectPanini(this,'Avec fromage',2000)">Avec fromage</button>
+<button class="taco-btn" onclick="selectPanini(this,'Sans fromage',1500)">Sans fromage</button>
+</div>
+
+<p id="paniniPrice">2000 FCFA</p>
+<button class="btn" onclick="addPanini()">Ajouter</button>
+</div>
+</div>
+
+<!-- Tacos -->
+<div class="card">
+<img src="Photos/tacooo.jpg">
+<div class="card-content">
+<h3>Tacos</h3>
+
+<div class="tacos-options">
+<button class="taco-btn active" onclick="selectTacos(this,'Poulet',3500)">Poulet</button>
+<button class="taco-btn" onclick="selectTacos(this,'Viande',4000)">Viande</button>
+</div>
+
+<p id="tacosPrice">3500 FCFA</p>
+<button class="btn" onclick="addTacos()">Ajouter</button>
+</div>
+</div>
+
+<!-- Shawarma -->
+<div class="card">
+<img src="Photos/shawarmaaa.jpg">
+<div class="card-content">
+<h3>Shawarma</h3>
+<p>2000 FCFA</p>
+<button class="btn" onclick="addToCart('Shawarma',2000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Kebab -->
+<div class="card">
+<img src="Photos/kebab.jpg">
+<div class="card-content">
+<h3>Kebab</h3>
+<p>3000 FCFA</p>
+<button class="btn" onclick="addToCart('Kebab',3000)">Ajouter</button>
+</div>
+</div>
+
+<!-- Gaufres salées -->
+<div class="card">
+<img src="Photos/gaufreee.jpg">
+<div class="card-content">
+<h3>Gaufres salées</h3>
+<p>2500 FCFA</p>
+<button class="btn" onclick="addToCart('Gaufres salées',2500)">Ajouter</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- BOISSONS -->
+<div id="boissons" class="page">
+
+<h2>Boissons</h2>
+
+<!-- ================= COCKTAILS SANS ALCOOL ================= -->
+<h3 style="margin-top:20px;">🍹 Cocktails sans alcool</h3>
+
+<div class="cards">
+
+<div class="card">
+<img src="Photos/coladaaa.jpg">
+<div class="card-content">
+<h3>Virgin Colada</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Virgin Colada',4000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/boraaa.jpg">
+<div class="card-content">
+<h3>Bora Bora</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Bora Bora',4000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/mojitooo.jpg">
+<div class="card-content">
+<h3>Mojito</h3>
+<p>4000 FCFA</p>
+<button class="btn" onclick="addToCart('Mojito',4000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/shakeee.jpg">
+<div class="card-content">
+<h3>Milk Shake</h3>
+<p>3000 FCFA</p>
+<button class="btn" onclick="addToCart('Milk Shake',3000)">Ajouter</button>
+</div>
+</div>
+
+</div> <!-- fin cocktails -->
+
+
+<!-- ================= SOFT DRINKS ================= -->
+<h3 style="margin-top:40px;">🥤 Soft Drinks</h3>
+
+<div class="cards">
+
+<div class="card">
+<img src="Photos/cocaaa.jpg">
+<div class="card-content">
+<h3>Coca-Cola</h3>
+<p>1000 FCFA</p>
+<button class="btn" onclick="addToCart('Coca-Cola',1000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/fantaaa.jpg">
+<div class="card-content">
+<h3>Fanta</h3>
+<p>1000 FCFA</p>
+<button class="btn" onclick="addToCart('Fanta',1000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/oranginaaa.jpg">
+<div class="card-content">
+<h3>Orangina</h3>
+<p>1000 FCFA</p>
+<button class="btn" onclick="addToCart('Orangina',1000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/bull.jpg">
+<div class="card-content">
+<h3>Redbull</h3>
+<p>2000 FCFA</p>
+<button class="btn" onclick="addToCart('Redbull',2000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/eauuu.jpg">
+<div class="card-content">
+<h3>Eau minérale</h3>
+<p>500 FCFA</p>
+<button class="btn" onclick="addToCart('Eau minérale',500)">Ajouter</button>
+</div>
+</div>
+
+</div> <!-- fin soft drinks -->
+
+
+<!-- ================= BOISSONS CHAUDES ================= -->
+<h3 style="margin-top:40px;">☕ Boissons chaudes</h3>
+
+<div class="cards">
+
+<div class="card">
+<img src="Photos/cafeee.jpg">
+<div class="card-content">
+<h3>Café</h3>
+<p>1000 FCFA</p>
+<button class="btn" onclick="addToCart('Café',1000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/theee.jpg">
+<div class="card-content">
+<h3>Thé</h3>
+<p>1000 FCFA</p>
+<button class="btn" onclick="addToCart('Thé',1000)">Ajouter</button>
+</div>
+</div>
+
+<div class="card">
+<img src="Photos/chocolaaa.jpg">
+<div class="card-content">
+<h3>Chocolat chaud</h3>
+<p>2000 FCFA</p>
+<button class="btn" onclick="addToCart('Chocolat chaud',2000)">Ajouter</button>
+</div>
+</div>
+
+</div> <!-- fin boissons chaudes -->
+
+</div> <!-- FIN PAGE BOISSONS -->
+
+<footer class="footer">
+<div class="footer-container">
+<div>
+<div class="footer-logo">Tira Lilice</div>
+<div class="footer-tagline">
+Le plaisir commence ici... et ne s'arrête jamais !
+</div>
+</div>
+<!-- SOCIAL PREMIUM SECTION -->
+<div class="social-premium">
+<h3>Suivez-nous</h3>
+<p>Rejoignez la communauté Tira Lilice</p>
+
+<div class="social-icons">
+<a href="https://instagram.com/" target="_blank" class="social-btn insta">
+<i class="fa-brands fa-instagram"></i>
+</a>
+
+<a href="https://tiktok.com/" target="_blank" class="social-btn tiktok">
+<i class="fa-brands fa-tiktok"></i>
+</a>
+
+<a href="https://facebook.com/" target="_blank" class="social-btn facebook">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+</div>
+</div>
+<div class="footer-section">
+<h4>Contact</h4>
+<p>📍 Allée Piétonne Hôtel Saphir</p> 
+<p>📞 06 438 5646</p>
+<p>⏰ 10h30 - 00h00</p>
+</div>
+
+<div class="footer-divider"></div>
+
+<div class="footer-bottom">
+©️ 2026 Tira Lilice | ©️ Product by RMP RECORD
+</div>
+</div>
+</footer>
+
+<!-- PANIER -->
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<div class="cart" id="cart">
+<h3>Votre Panier</h3>
+<div id="cartItems"></div>
+<div class="total" id="total">Total: 0 FCFA</div>
+<br>
+<button class="btn" onclick="sendWhatsApp()">Commander</button>
+</div>
+<div id="toast" class="toast">Ajouté au panier 🛒</div>
+<div class="cart-icon" onclick="toggleCart()">
+<i class="fa-solid fa-cart-shopping"></i>
+<span id="cartCount" class="cart-badge">0</span>
+</div>
+
+<a class="whatsapp-float" href="https://wa.me/242064456713" target="_blank">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+
+/* ================= MENU + NAVIGATION ================= */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const menuToggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector("header nav");
+
+if(menuToggle && nav){
+menuToggle.addEventListener("click", function(){
+nav.classList.toggle("active");
+});
+}
+
+});
+
+/* ================= NAVIGATION PAGES ================= */
+
+function showPage(id){
+
+const pages = document.querySelectorAll(".page");
+
+pages.forEach(page => page.classList.remove("active"));
+
+const target = document.getElementById(id);
+
+if(target){
+target.classList.add("active");
+}
+
+const nav = document.querySelector("header nav");
+if(nav){
+nav.classList.remove("active");
+}
+
+}
+
+/* ================= PANIER ================= */
+
+let cart = [];
+
+function updateBadge(){
+let totalItems = 0;
+cart.forEach(i => totalItems += i.qty);
+document.getElementById("cartCount").innerText = totalItems;
+}
+
+function showToast(){
+let toast = document.getElementById("toast");
+toast.classList.add("show");
+setTimeout(()=>toast.classList.remove("show"),1500);
+}
+
+function addToCart(name,price){
+
+let existing = cart.find(i => i.name === name);
+
+if(existing){
+existing.qty++;
+}else{
+cart.push({name:name, price:price, qty:1});
+}
+
+updateCart();
+updateBadge();
+showToast();
+}
+
+/* ================= TACOS ================= */
+
+let selectedTacos = { name:"Poulet", price:3500 };
+
+function selectTacos(button,type,price){
+
+document.querySelectorAll("#fastfood .tacos-options .taco-btn")
+.forEach(btn => btn.classList.remove("active"));
+
+button.classList.add("active");
+
+selectedTacos = { name:type, price:price };
+
+const tacosPrice = document.getElementById("tacosPrice");
+if(tacosPrice){
+tacosPrice.innerText = price + " FCFA";
+}
+
+}
+
+function addTacos(){
+addToCart("Tacos " + selectedTacos.name, selectedTacos.price);
+}
+
+/* ================= PANINI ================= */
+
+let selectedPanini = { name:"Avec fromage", price:2000 };
+
+function selectPanini(button,type,price){
+
+document.querySelectorAll("#fastfood .Panini-options .taco-btn")
+.forEach(btn => btn.classList.remove("active"));
+
+button.classList.add("active");
+
+selectedPanini = { name:type, price:price };
+
+const paniniPrice = document.getElementById("paniniPrice");
+if(paniniPrice){
+paniniPrice.innerText = price + " FCFA";
+}
+
+}
+
+function addPanini(){
+addToCart("Panini " + selectedPanini.name, selectedPanini.price);
+}
+
+/* ================= UPDATE CART ================= */
+
+function updateCart(){
+
+let c = document.getElementById("cartItems");
+c.innerHTML = "";
+
+let total = 0;
+
+cart.forEach((item,index)=>{
+
+total += item.price * item.qty;
+
+c.innerHTML += `
+<div class="cart-item">
+${item.name}<br>
+${item.price} x ${item.qty}
+<button class="qty-btn" onclick="changeQty(${index},-1)">-</button>
+<button class="qty-btn" onclick="changeQty(${index},1)">+</button>
+<button class="remove-btn" onclick="removeItem(${index})">X</button>
+</div>
+`;
+
+});
+
+document.getElementById("total").innerText = "Total: " + total + " FCFA";
+
+}
+
+/* ================= QUANTITÉ ================= */
+
+function changeQty(index,delta){
+
+cart[index].qty += delta;
+
+if(cart[index].qty <= 0){
+cart.splice(index,1);
+}
+
+updateCart();
+updateBadge();
+
+}
+
+function removeItem(index){
+cart.splice(index,1);
+updateCart();
+updateBadge();
+}
+
+/* ================= PANIER UI ================= */
+
+function toggleCart(){
+document.getElementById("cart").classList.toggle("active");
+document.getElementById("overlay").classList.toggle("active");
+}
+
+function closeCart(){
+document.getElementById("cart").classList.remove("active");
+document.getElementById("overlay").classList.remove("active");
+}
+
+/* ================= WHATSAPP ================= */
+
+function sendWhatsApp(){
+
+if(cart.length === 0){
+alert("Panier vide");
+return;
+}
+
+let msg = "Bonjour, je souhaite commander :%0A";
+let total = 0;
+
+cart.forEach(item=>{
+msg += `- ${item.name} x${item.qty} (${item.price * item.qty} FCFA)%0A`;
+total += item.price * item.qty;
+});
+
+msg += `%0ATotal: ${total} FCFA`;
+
+window.open("https://wa.me/242064456713?text=" + msg,"_blank");
+
+}
+
+</script>
